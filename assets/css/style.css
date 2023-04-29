@@ -1,0 +1,12 @@
+#search{
+display: flexbox;
+flex-wrap: wrap;
+width: 25%;
+margin-left: 5px;
+}
+.btn-primary{
+    display: flexbox;
+    margin-top: 10px;
+    margin-left: 5px;
+    width: 25%;
+}
