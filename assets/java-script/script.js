@@ -1,7 +1,6 @@
 var apiCode = "f0b6e0e48ee2f2d5d637188c67551b91";
 var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=";
 var apiForecast = "http://api.openweathermap.org/data/2.5/forecast?";
-var apiCurrent ="https://api.openweathermap.org/data/2.5/weather?"
 var displayResult = document.querySelector('#resultsArea');
 
 document.getElementById('currentButton').onclick =function(){
@@ -47,19 +46,19 @@ function getCurrent(current){
 }
 
 function createCurrent(cast){
-  displayResult.innerHTML = '';
+  displayResult.innerHTML = "";
   var display = document.createElement('div');
   display.classList.add("col-12");
   var date = document.createElement('p')
-  date.textContent =" "+ cast.list[0].dt_txt
+  date.textContent = cast.list[0].dt_txt
   var title = document.createElement('h2');
   title.textContent = cast.city.name;
   var temp = document.createElement('p');
-  temp.textContent = 'Temperature: '+ cast.list[0].main.temp + ' °F'
+  temp.textContent = "Temperature: "+ cast.list[0].main.temp + " °F"
   var wind = document.createElement('p');
-  wind.textContent = 'Wind Speed: '+ cast.list[0].wind.speed + ' MPH'
+  wind.textContent = "Wind Speed: "+ cast.list[0].wind.speed + " MPH"
   var humid = document.createElement('p');
-  humid.textContent = 'Humidity: '+ cast.list[0].main.humidity + '%'
+  humid.textContent = "Humidity: "+ cast.list[0].main.humidity + "%"
   title.append(date)
   display.append(title,temp,wind,humid);
   return display;
