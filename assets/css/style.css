@@ -9,5 +9,13 @@ margin-left: 5px;
     margin-top: 10px;
     margin-left: 5px;
     width: 70%;
-
+}
+.inline{
+    display: inline-block;
+width: 19%;
+}
+.gray{
+    margin-top: 5px;
+    margin-left: 5px;
+    background-color: lightgray;
 }
