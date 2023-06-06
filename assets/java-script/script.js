@@ -141,18 +141,19 @@ function createCurrent(cast){
   wind.textContent = "Wind Speed: "+ cast.wind.speed + " MPH"
   humid.textContent = "Humidity: "+ cast.main.humidity + "%"
   title.append(date)
+  console.log(cast.weather[0].main)
 
-  if (cast.weather.main = "Clouds"){
+  if (cast.weather[0].main == "Clouds"){
     icon.src="./assets/images/coudyIcon.png"
     icon.style.width = "50px";
     icon.style.height = "50px";
   }
-  if (cast.weather.main = "Rain"){
+  if (cast.weather[0].main == "Rain"){
     icon.src="./assets/images/rainyIcon.png"
     icon.style.width = "50px";
     icon.style.height = "50px";
   }
-  if (cast.weather.main = "Clear"){
+  if (cast.weather[0].main == "Clear"){
     icon.src="./assets/images/sunnyIcon.png"
     icon.style.width = "50px";
     icon.style.height = "50px"; 
@@ -176,17 +177,18 @@ function createFiveDay(cast){
   humid.textContent = "Humidity: "+ cast.main.humidity + "%"
   title.append(date)
   
-  if (cast.weather.main = "Clouds"){
+  
+  if (cast.weather[0].main == "Clouds"){
     icon.src="./assets/images/coudyIcon.png"
     icon.style.width = "50px";
     icon.style.height = "50px";
   }
-  if (cast.weather.main = "Rain"){
+  if (cast.weather[0].main == "Rain"){
     icon.src="./assets/images/rainyIcon.png"
     icon.style.width = "50px";
     icon.style.height = "50px";
   }
-  if (cast.weather.main = "Clear"){
+  if (cast.weather[0].main == "Clear"){
     icon.src="./assets/images/sunnyIcon.png"
     icon.style.width = "50px";
     icon.style.height = "50px"; 
