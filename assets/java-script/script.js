@@ -1,14 +1,16 @@
+// declares all of my api's and the different urls for them
 var apiCode = "f0b6e0e48ee2f2d5d637188c67551b91";
 var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=";
 var apiForecast = "https://api.openweathermap.org/data/2.5/forecast?lat=";
 var apiCurrent = "https://api.openweathermap.org/data/2.5/weather?lat="
+// points to the part on the HTML that I want to target with the var's
 var displayResult = document.querySelector('#resultsArea');
 var historyContainer = document.querySelector("#historyBtn")
 
 var cityHistory = [];
-
+// starts the history calling function
 retrieveHistory()
-
+// if there is no local history yet skips this step otherwise it pulls all the citys and starts making buttons for them
 function retrieveHistory(){
   var storedHistory = JSON.parse(localStorage.getItem('History'));
   console.log(storedHistory)
@@ -28,7 +30,7 @@ function retrieveHistory(){
       var btnEl = document.createElement('button');
       btnEl.setAttribute('class', 'btn btn-primary');
       btnEl.textContent = cityHistory[i];
-
+// if the button is clicked pulls the city and runs through the functions to genereate weather
       btnEl.addEventListener('click', function() {
         var clickedCity = cityHistory[i];
         handleHistoryClick(clickedCity);
@@ -42,7 +44,7 @@ function retrieveHistory(){
       getLocation(locationGet);
     }
     
-
+// if the search button is clicked takes the input and starts the functions to genereate the weather
 document.getElementById('currentButton').onclick =function(){
   var input = document.getElementById("search").value;
   var locationGet = apiUrl+input+'&appid='+apiCode;
@@ -57,7 +59,7 @@ localStorage.clear();
 location.reload();
 }
 
-
+//gets the lat and lon from the city name
 function getLocation(city){
   fetch(city)
   .then(function(res){
@@ -73,7 +75,7 @@ function getLocation(city){
     console.log(error);
   })
 }
-
+// pulls the current weather using the lat and lon data
 function getCurrent(current){
   var cityLon = current[0].lon;
     console.log(cityLon);
@@ -93,7 +95,7 @@ function getCurrent(current){
     console.log(error);
   })
 }
-
+//pulls the forecast using the lat and lon data
 function getForecast(forecast){
   var cityLon = forecast[0].lon;
     console.log(cityLon);
@@ -118,13 +120,14 @@ function displayCurrent(cast){
   var weather3h = createCurrent(cast);
   displayResult.appendChild(weather3h);
 }
+//cycles through the forecast 5 times to generate 5 days worth of data
 function displayForecast(cast){
     for(var i = 1;i < 40 + 1;i += 8){
     var fiveDay = createFiveDay(cast.list[i]);
     displayResult.appendChild(fiveDay);
     }
 }
-
+//function to make and display the current weather
 function createCurrent(cast){
   displayResult.innerHTML = "";
   var display = document.createElement('div');
@@ -142,7 +145,7 @@ function createCurrent(cast){
   humid.textContent = "Humidity: "+ cast.main.humidity + "%"
   title.append(date)
   console.log(cast.weather[0].main)
-
+//if statements for which icon to display
   if (cast.weather[0].main == "Clouds"){
     icon.src="./assets/images/coudyIcon.png"
     icon.style.width = "50px";
@@ -161,7 +164,7 @@ function createCurrent(cast){
   display.append(title,icon,temp,wind,humid);
   return display;
 }
-
+//function to make and display the forecast
 function createFiveDay(cast){
   var display = document.createElement('div');
   var date = document.createElement('p')
@@ -177,7 +180,7 @@ function createFiveDay(cast){
   humid.textContent = "Humidity: "+ cast.main.humidity + "%"
   title.append(date)
   
-  
+  //if statements for which icon to display
   if (cast.weather[0].main == "Clouds"){
     icon.src="./assets/images/coudyIcon.png"
     icon.style.width = "50px";
